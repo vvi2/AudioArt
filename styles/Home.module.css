@@ -1,91 +1,590 @@
 .container {
   min-height: 100vh;
-  padding: 0 0.5rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  font-family: 'Inter', sans-serif;
+  background: #000;
+  color: #FFF;
+  margin: 0;
+}
+.center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
-.title a {
-  color: #0070f3;
-  text-decoration: none;
+.homeIntro{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
+.homeTitle{
+  text-align: center;
+  font-size: 48px;
+  font-weight: 400;
+}
+.homeDescription{
+  text-align: center;
+  font-size: 24px;
+  font-weight: 400;
+  margin-top: 0px;
+}
+.homeLogin{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 24px;
+}
+.loginButton{
+  border-radius: 16px;
+  background: #1DB954;
+  padding: 18px 36px;
+  border-width: 0px;
+  color: #FFF;
+  font-size: 24px;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+}
+.continueButton{
+  padding: 25px 90px;
+  border: none;
+  outline: none;
+  position: relative;
+  border-radius: 16px;
+  background: linear-gradient(to right, #7B61FF, #FF3A8A);
+  cursor: pointer;
+  color: white;
+}
+.continueButton::before{
+  content: "Continue to AI";
+  font-size: 24px;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  bottom: 1px;
+  left: 1px;
+  background-color: black;
+  border-radius: 16px;
+  color: white;
+}
+.generateButton{
+  padding: 15px 80px;
+  border: none;
+  outline: none;
+  position: relative;
+  border-radius: 12px;
+  background: linear-gradient(to right, #7B61FF, #FF3A8A);
+  cursor: pointer;
+  color: white;
+  margin-top: 24px;
+}
+.generateButton::before{
+  content: "Generate Cover Art";
+  font-size: 16px;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  bottom: 1px;
+  left: 1px;
+  background-color: black;
+  border-radius: 12px;
+  color: white;
+  font-weight: bold;
+}
+.downloadButton{
+  padding: 15px 80px;
+  border: none;
+  outline: none;
+  position: relative;
+  border-radius: 12px;
+  background: linear-gradient(to right, #7B61FF, #FF3A8A);
+  cursor: pointer;
+  color: white;
+  margin-top: 24px;
+}
+.downloadButton::before{
+  content: "Download Image";
+  font-size: 16px;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  bottom: 1px;
+  left: 1px;
+  background-color: black;
+  border-radius: 12px;
+  color: white;
+  font-weight: bold;
+}
+.regenerateButton{
+  padding: 15px 80px;
+  border: none;
+  outline: none;
+  position: relative;
+  border-radius: 12px;
+  background: linear-gradient(to right, #7B61FF, #FF3A8A);
+  cursor: pointer;
+  color: white;
+  margin-top: 24px;
+}
+.regenerateButton::before{
+  content: "Regenerate Cover Art";
+  font-size: 16px;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  bottom: 1px;
+  left: 1px;
+  background-color: black;
+  border-radius: 12px;
+  color: white;
+  font-weight: bold;
+}
+.buttonDiv{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  max-width: fit-content;
+  margin-left: 40%;
 
-.title a:hover,
-.title a:focus,
-.title a:active {
+}
+.nextButton{
+  padding: 15px 40px;
+  border: none;
+  outline: none;
+  position: relative;
+  border-radius: 10px;
+  background: linear-gradient(to right, #7B61FF, #FF3A8A);
+  cursor: pointer;
+  color: white;
+  margin-top: 48px;
+  margin-left: 45%;
+}
+.nextButton::before{
+  content: "Next >";
+  font-size: 16px;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  bottom: 1px;
+  left: 1px;
+  background-color: black;
+  border-radius: 10px;
+  color: white;
+  font-weight: bold;
+
+}
+.disabledNextButton{
+  padding: 15px 40px;
+  border: none;
+  outline: none;
+  position: relative;
+  border-radius: 10px;
+  background: gray;
+  color: gray;
+  margin-top: 48px;
+  margin-left: 45%;
+}
+.disabledNextButton::before{
+  content: "Next >";
+  font-size: 16px;
+  font-family: 'Inter', sans-serif;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  bottom: 1px;
+  left: 1px;
+  background-color: black;
+  border-radius: 10px;
+  color: gray;
+  font-weight: bold;
+}
+.disabledPrevButton{
+  padding: 15px 40px;
+  border: none;
+  outline: none;
+  position: relative;
+  border-radius: 10px;
+  background: gray;
+  color: gray;
+  margin-top: 48px;
+  margin-left: 45%;
+}
+.disabledPrevButton::before{
+  content: "< Prev";
+  font-size: 16px;
+  font-family: 'Inter', sans-serif;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  bottom: 1px;
+  left: 1px;
+  background-color: black;
+  border-radius: 10px;
+  color: gray;
+  font-weight: bold;
+}
+.prevButton{
+  padding: 15px 40px;
+  border: none;
+  outline: none;
+  position: relative;
+  border-radius: 10px;
+  background: linear-gradient(to right, #7B61FF, #FF3A8A);
+  cursor: pointer;
+  color: white;
+  margin-top: 48px;
+  margin-left: 45%;
+}
+.prevButton::before{
+  content: "< Prev";
+  font-size: 16px;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  bottom: 1px;
+  left: 1px;
+  background-color: black;
+  border-radius: 10px;
+  color: white;
+  font-weight: bold;
+}
+.loadingButton{
+  padding: 15px 80px;
+  border: none;
+  outline: none;
+  position: relative;
+  background: none;
+  cursor: pointer;
+  margin-top: 24px;
+  color: white;
+  font-size: 20px;
+
+}
+.homeLogin > h2{
+  max-width: 269px;
+  color: #808191;
+  text-align: center;
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-top: 20px;
+  font-family: 'Inter', sans-serif;
+}
+.white{
+  color: white;
   text-decoration: underline;
+  cursor: pointer;
 }
-
-.title {
-  margin: 0 0 1rem;
-  line-height: 1.15;
-  font-size: 3.6rem;
-}
-
-.title {
+.profileH3{
   text-align: center;
+  font-size: 20px;
+  font-weight: 400;
+  margin-top: 0px;
+  color: white;
 }
-
-.title,
-.description {
+.spotifyPage{
+  margin-bottom: 64px;
+}
+.profileNav{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 35px 64px;
+}
+.profileH1{
   text-align: center;
+  font-size: 36px;
+  font-weight: 400;
+  margin-top: 0px;
+
+}
+.profileH2{
+  text-align: center;
+  font-size: 24px;
+  font-weight: 400;
+  margin-top: 0px;
+}
+.profileSection{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.cardContainer{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Maximum 5 items per row */
+  grid-gap: 48px; 
+  margin-top: 48px;
+  
+}
+.card{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  transition: 0.3s ease, transform 0.3s ease;
 }
 
+.cardImg{
+  cursor: pointer;
+  width: 150px;
+  height: 150px;
+  transition: 0.3s ease, border 0.3s ease;
+  object-fit: cover;
 
-.description {
-  line-height: 1.5;
-  font-size: 1.5rem;
+  /* Add padding to the border using box-shadow */
+
+}
+.cardImg2{
+  cursor: pointer;
+  width: 150px;
+  height: 150px;
+  transition: 0.3s ease, border 0.3s ease;
+  outline: 3px solid white;
+  object-fit: cover;
+
+  /* Add padding to the border using box-shadow */
+
+}
+.card:hover{
+  transform: translateY(-5px);
+}
+.card:hover .cardImg{
+  /* Apply the white border when the user hovers over the card */
+  outline: 3px solid white;
 }
 
-.grid {
+.cardName{
+  text-align: center;
+  font-size: 20px;
+  font-weight: 400;
+  color: white;
+  margin-top: 12px;
+  margin-bottom: 0px;
+  cursor: pointer;
+}
+.textGradient{
+  background: linear-gradient(to right, #7B61FF, #FF3A8A);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7); /* Faded background */
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-wrap: wrap;
-
-  max-width: 800px;
-  margin-top: 3rem;
+  z-index: 9999;
+  flex-direction: flex-column;
 }
 
-.card {
-  margin: 1rem;
-  flex-basis: 45%;
-  padding: 1.5rem;
+.overlayContent {
+  background-color:black;
+  padding: 40px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+  max-width: 900px;
+  padding-bottom: 40px;
+  text-align: center;
+  outline: 1px solid rgba(255, 255, 255, 0.421);
+  height: 80%;
+  overflow-y: auto; 
+  /* box-shadow: 0px 4px 10px 2px rgba(255, 255, 255, 0.1); */
+
+}
+
+.overlayFirst{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.overlayPlaylistDetails{
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  margin-right: 40px;
+  margin-bottom: 24px;
+  margin-top: 24px;
+}
+
+.closeButton {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 28px;
+  cursor: pointer;
+}
+.backButton{
+  position: absolute;
+  top: 18px;
+  left: 20px;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+.overlayImage {
+  max-width: 55%;
+  object-fit: cover;
+}
+.overlaySongContainer{
+  border-left: 2px solid rgba(255, 255, 255, 1);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-height: 270px;
+  /* Set the maximum height for the song list */
+  width: 50%;
+  min-width: 200px;
+  overflow-y: auto; /* Enable vertical scrolling */
+  margin-top: 0px;
+}
+.overlaySong{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 4px;
+  margin-bottom: 0px;
+  margin-left: 16px;
+}
+.overlaySongName{
+  font-size: 16px;
+  margin-bottom: 0px;
+  margin-top: 0px;
   text-align: left;
-  color: inherit;
-  text-decoration: none;
-  border: 1px solid #eaeaea;
-  border-radius: 10px;
-  transition: color 0.15s ease, border-color 0.15s ease;
+}
+.overlaySongArtist{
+  font-size: 14px;
+  color: #B3B3B3;
+  margin-top: 4px;
+  margin-bottom: 16px;
+  text-align: left;
+}
+.AIArt{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 108px;
+  
+}
+.formInput {
+  border: 2px solid #7B61FF;
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 16px;
+  width: 50%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: border-color 0.3s, box-shadow 0.3s;
 }
 
-.card:hover,
-.card:focus,
-.card:active {
-  color: #0070f3;
-  border-color: #0070f3;
+.formInput:focus {
+  border-color: #FF3A8A;
+  outline: none;
+  box-shadow: 0 0 8px rgba(231, 76, 60, 0.6);
 }
 
-.card h3 {
-  margin: 0 0 1rem 0;
-  font-size: 1.5rem;
+.wordBankContainer{
+  display: grid; /* or display: flex; for a flexbox grid */
+  grid-template-columns: repeat(4, 1fr); /* Adjust the number of columns as needed */
+  gap: 12px; /* Adjust the gap between grid items */
+  max-width: 800px; /* Set a maximum width for the container */
+  margin: 0 auto; /* Center the container */
+  width: 90%;
 }
-
-.card p {
-  margin: 0;
-  font-size: 1.25rem;
-  line-height: 1.5;
+.wordButton{
+  outline: 1px solid rgba(255, 255, 255, 0.421);
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 12px;
+  padding-right: 12px;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+  border-radius: 18px;
 }
-
-.logo {
-  height: 1em;
+.selectedWordButton{
+  background-color: #007bff; /* Change the background color when selected */
+  color: #fff; /* Change the text color when selected */
+  border-color: #007bff; /* Change the border color when selected */
+  cursor: pointer;
+  outline: 1px solid rgba(255, 255, 255, 0.421);
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 12px;
+  padding-right: 12px;
+  border-radius: 18px;
+  transition: background-color 0.3s ease;
 }
+.showInfo{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.infoTitle{
+  margin-right: 8px;
+}
+.infoBlurb{
+  text-align: left;
+  max-width: 70%;
+  margin-top: 4px;
+  outline: 0.5px solid white;
+  padding-left: 12px;
+  padding-right: 12px;
+  border-radius: 12px;
+}
+.generatedArt{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
-@media (max-width: 600px) {
-  .grid {
-    width: 100%;
-    flex-direction: column;
-  }
 }
