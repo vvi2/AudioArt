@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import styles from '../styles/Home.module.css';
-import {process} from "./env"
+
 import { Configuration, OpenAIApi } from "openai"
 import PropertySelect from './PropertySelect'
 
