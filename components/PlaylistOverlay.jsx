@@ -177,9 +177,9 @@ export default function PlaylistOverlay(props) {
     if(imagePrompt){
       setLoadingAI(true);
       setAIGenerated(true);
-      // fetchImage(imagePrompt).finally(() => {
-      //   setLoadingAI(false);
-      // })
+      fetchImage(imagePrompt).finally(() => {
+        setLoadingAI(false);
+      })
     }
   }, [imagePrompt])
   
