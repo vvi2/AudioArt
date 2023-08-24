@@ -8,7 +8,7 @@ import styles from '../styles/Home.module.css';
 
 export default function Home() {
   const CLIENT_ID = "3f3dceffc53241fea28db2404f844ffd"
-  const REDIRECT_URI = "https://loquacious-panda-8919fa.netlify.app/"
+  const REDIRECT_URI = "https://audio-art.netlify.app/"
   const [accessToken, setAccessToken] = useState("");
 
   //Code Verifier
