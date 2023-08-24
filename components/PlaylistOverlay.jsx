@@ -141,8 +141,8 @@ export default function PlaylistOverlay(props) {
     })
 
     const result = await response.json()
-    console.log(result)
-    setImagePrompt(data)
+    console.log(result.reply.choices[0].text)
+    setImagePrompt(result.reply.choices[0].text)
   }
   
   // async function fetchImage(prompt){
