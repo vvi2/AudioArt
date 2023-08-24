@@ -110,7 +110,7 @@ export default function PlaylistOverlay(props) {
   const [art, setArt] = useState("");
 
   async function generatePrompt(data, playlistSummary){
-    const url = "https://loquacious-panda-8919fa.netlify.app/.netlify/functions/fetchAI"
+    const url = "hhttps://audio-art.netlify.app/.netlify/functions/fetchAI"
 
     const response = await fetch(url, {
       method: 'POST',
@@ -146,7 +146,7 @@ export default function PlaylistOverlay(props) {
   }
   
   async function fetchImage(prompt){
-    const url = "https://loquacious-panda-8919fa.netlify.app/.netlify/functions/fetchDALLE"
+    const url = "https://audio-art.netlify.app/.netlify/functions/fetchDALLE"
 
     const response = await fetch(url, {
       method: 'POST',
