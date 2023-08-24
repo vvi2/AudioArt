@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import styles from '../styles/Home.module.css';
 
-import { Configuration, OpenAIApi } from "openai"
-import PropertySelect from './PropertySelect'
+// import { Configuration, OpenAIApi } from "openai"
+// import PropertySelect from './PropertySelect'
 
 export default function PlaylistOverlay(props) {
   const [songList, setSongList] = useState([]);
@@ -107,53 +107,25 @@ export default function PlaylistOverlay(props) {
     )
   })
   
-  const configuration = new Configuration({
-    apiKey: process.env.OPENAI_API_KEY
-  })
+  // const configuration = new Configuration({
+  //   apiKey: process.env.OPENAI_API_KEY
+  // })
 
-  delete configuration.baseOptions.headers['User-Agent'];
+  // delete configuration.baseOptions.headers['User-Agent'];
   
-  const openai = new OpenAIApi(configuration)
+  // const openai = new OpenAIApi(configuration)
 
   const [art, setArt] = useState("");
 
   async function generatePrompt(data, openai, playlistSummary){
-    // const url = "https://loquacious-panda-8919fa.netlify.app/.netlify/functions/fetchAI"
+    const url = "https://loquacious-panda-8919fa.netlify.app/.netlify/functions/fetchAI"
 
-    // const response = await fetch(url, {
-    //   method: 'POST',
-    //   headers: {
-    //     'content-type': 'text/plain',
-    //   },
-    //   body: `Give a description of an image which could be used to represent a playlist of songs based on the average audio features of the songs and a sentence of what the playlist means to the user. These audio features will include danceability, energy, speechiness, and valence. If the danceability or energy is below 0.33, the colors in the picture should be described as dull and more neutral/cool. If the danceability or energy is betweenThe description should be rich in visual detail. Make sure to include that no words or letters should be present in the image.
-    //   ###
-    //   sentence: This playlist is for when I want to get hype and excited during a pregame before a night out.
-    //   average danceability: 0.52732
-    //   average energy: 0.71932
-    //   average speechiness: 0.061708
-    //   average valence: 0.33684
-    //   image-description: In the vibrant swirl of electric neon lights, an image comes to life that perfectly encapsulates the essence of your playlist. Due to the medium danceability, a pulsating cityscape stretches across the horizon, a mesmerizing fusion of skyscrapers and billboards ablaze with dynamic colors. Due to the higher energy, the foreground is alive with kinetic energy. Due to the low speechiness, this image is very fluid and many of shapes and colors are blended together. Due to the lower valence, amidst the dazzling spectacle, a lunar crescent of subdued warmth hovers above. No words or letters should be in the image.
-    //   ###
-    //   sentence: For when I want to feel calm and relaxed.
-    //   average danceability: 0.1632
-    //   average energy: 0.2783
-    //   average speechiness: 0.142
-    //   average valence: 0.7893
-    //   image-description: A serene meadow stretches out beneath an expansive cerulean sky, adorned with fluffy, cotton-like clouds that drift lazily across the horizon giving a very calm and relaxed feeling. Due to the lower danceability and energy, the colors in this picture are slightly more neutral and dull and gives very earthy and woody tones. Slightly higher speechiness of 0.142 is reflected in the distinct shapes and contrast in the picture. Above it all, the sun hangs like a radiant lantern in the sky and its rays infuse the meadow with a sense of serenity and well-being, mirroring the playlist's valence, marked by an average score of 0.7893 which gives a very positive and happy vibe to the image. No words or letters should be in the image.
-    //   ###
-    //   sentence: ${playlistSummary}
-    //   average danceability: ${data.danceability}
-    //   average energy: ${data.energy}
-    //   average speechiness: ${data.speechines}
-    //   average valence: ${data.valence}`
-    // })
-
-    // const data = await response.json()
-    // console.log(data)
-
-    const response = await openai.createCompletion({
-      model: 'text-davinci-003',
-      prompt: `Give a description of an image which could be used to represent a playlist of songs based on the average audio features of the songs and a sentence of what the playlist means to the user. These audio features will include danceability, energy, speechiness, and valence. If the danceability or energy is below 0.33, the colors in the picture should be described as dull and more neutral/cool. If the danceability or energy is betweenThe description should be rich in visual detail. Make sure to include that no words or letters should be present in the image.
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'content-type': 'text/plain',
+      },
+      body: `Give a description of an image which could be used to represent a playlist of songs based on the average audio features of the songs and a sentence of what the playlist means to the user. These audio features will include danceability, energy, speechiness, and valence. If the danceability or energy is below 0.33, the colors in the picture should be described as dull and more neutral/cool. If the danceability or energy is betweenThe description should be rich in visual detail. Make sure to include that no words or letters should be present in the image.
       ###
       sentence: This playlist is for when I want to get hype and excited during a pregame before a night out.
       average danceability: 0.52732
@@ -173,11 +145,39 @@ export default function PlaylistOverlay(props) {
       average danceability: ${data.danceability}
       average energy: ${data.energy}
       average speechiness: ${data.speechines}
-      average valence: ${data.valence}`,
-      temperature: 0.8,
-      max_tokens: 150})
-      let prompt = await response.data.choices[0].text.trim();
-      setImagePrompt(prompt)
+      average valence: ${data.valence}`
+    })
+
+    const data = await response.json()
+    console.log(data)
+
+    // const response = await openai.createCompletion({
+    //   model: 'text-davinci-003',
+    //   prompt: `Give a description of an image which could be used to represent a playlist of songs based on the average audio features of the songs and a sentence of what the playlist means to the user. These audio features will include danceability, energy, speechiness, and valence. If the danceability or energy is below 0.33, the colors in the picture should be described as dull and more neutral/cool. If the danceability or energy is betweenThe description should be rich in visual detail. Make sure to include that no words or letters should be present in the image.
+    //   ###
+    //   sentence: This playlist is for when I want to get hype and excited during a pregame before a night out.
+    //   average danceability: 0.52732
+    //   average energy: 0.71932
+    //   average speechiness: 0.061708
+    //   average valence: 0.33684
+    //   image-description: In the vibrant swirl of electric neon lights, an image comes to life that perfectly encapsulates the essence of your playlist. Due to the medium danceability, a pulsating cityscape stretches across the horizon, a mesmerizing fusion of skyscrapers and billboards ablaze with dynamic colors. Due to the higher energy, the foreground is alive with kinetic energy. Due to the low speechiness, this image is very fluid and many of shapes and colors are blended together. Due to the lower valence, amidst the dazzling spectacle, a lunar crescent of subdued warmth hovers above. No words or letters should be in the image.
+    //   ###
+    //   sentence: For when I want to feel calm and relaxed.
+    //   average danceability: 0.1632
+    //   average energy: 0.2783
+    //   average speechiness: 0.142
+    //   average valence: 0.7893
+    //   image-description: A serene meadow stretches out beneath an expansive cerulean sky, adorned with fluffy, cotton-like clouds that drift lazily across the horizon giving a very calm and relaxed feeling. Due to the lower danceability and energy, the colors in this picture are slightly more neutral and dull and gives very earthy and woody tones. Slightly higher speechiness of 0.142 is reflected in the distinct shapes and contrast in the picture. Above it all, the sun hangs like a radiant lantern in the sky and its rays infuse the meadow with a sense of serenity and well-being, mirroring the playlist's valence, marked by an average score of 0.7893 which gives a very positive and happy vibe to the image. No words or letters should be in the image.
+    //   ###
+    //   sentence: ${playlistSummary}
+    //   average danceability: ${data.danceability}
+    //   average energy: ${data.energy}
+    //   average speechiness: ${data.speechines}
+    //   average valence: ${data.valence}`,
+    //   temperature: 0.8,
+    //   max_tokens: 150})
+    //   let prompt = await response.data.choices[0].text.trim();
+      setImagePrompt(data)
   }
   
   async function fetchImage(prompt){
