@@ -160,8 +160,9 @@ export default function PlaylistOverlay(props) {
     //if b64_json, .b64_json instead of .url
     // and src = "data:image/png;base64, ${response.data.data[0].b64_json}"
     const result = response.json()
-    const imgSrc = await result.reply.data[0].url
-    console.log("image url is: ", result.reply.data[0].url)
+    console.log(result)
+    const imgSrc = await result.reply[0].url
+    console.log("image url is: ", result.reply[0].url)
     setArt(imgSrc)
   }
 
