@@ -117,7 +117,7 @@ export default function PlaylistOverlay(props) {
 
   const [art, setArt] = useState("");
 
-  async function generatePrompt(data, openai, playlistSummary){
+  async function generatePrompt(data, playlistSummary){
     const url = "https://loquacious-panda-8919fa.netlify.app/.netlify/functions/fetchAI"
 
     const response = await fetch(url, {
@@ -197,7 +197,8 @@ export default function PlaylistOverlay(props) {
   function handleGenerateAI(){
       setButtonClick(true);
       if(avgData){
-        generatePrompt(avgData, openai, playlistSummary)
+        // generatePrompt(avgData, openai, playlistSummary)
+        generatePrompt(avgData, playlistSummary)
       }
   }
 
