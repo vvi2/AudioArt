@@ -180,19 +180,19 @@ export default function PlaylistOverlay(props) {
       setImagePrompt(data)
   }
   
-  async function fetchImage(prompt){
-    //256, 512, 1024
-    const response = await openai.createImage({
-      prompt: prompt,
-      n: 1,
-      size: '256x256',
-      response_format: 'url'
-    })
-    //if b64_json, .b64_json instead of .url
-    // and src = "data:image/png;base64, ${response.data.data[0].b64_json}"
-    const imgSrc = await response.data.data[0].url
-    setArt(imgSrc)
-  }
+  // async function fetchImage(prompt){
+  //   //256, 512, 1024
+  //   const response = await openai.createImage({
+  //     prompt: prompt,
+  //     n: 1,
+  //     size: '256x256',
+  //     response_format: 'url'
+  //   })
+  //   //if b64_json, .b64_json instead of .url
+  //   // and src = "data:image/png;base64, ${response.data.data[0].b64_json}"
+  //   const imgSrc = await response.data.data[0].url
+  //   setArt(imgSrc)
+  // }
 
   function handleGenerateAI(){
       setButtonClick(true);
@@ -205,9 +205,9 @@ export default function PlaylistOverlay(props) {
     if(imagePrompt){
       setLoadingAI(true);
       setAIGenerated(true);
-      fetchImage(imagePrompt).finally(() => {
-        setLoadingAI(false);
-      })
+      // fetchImage(imagePrompt).finally(() => {
+      //   setLoadingAI(false);
+      // })
     }
   }, [imagePrompt])
   
