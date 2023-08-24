@@ -145,19 +145,25 @@ export default function PlaylistOverlay(props) {
     setImagePrompt(result.reply.choices[0].text)
   }
   
-  // async function fetchImage(prompt){
-  //   //256, 512, 1024
-  //   const response = await openai.createImage({
-  //     prompt: prompt,
-  //     n: 1,
-  //     size: '256x256',
-  //     response_format: 'url'
-  //   })
-  //   //if b64_json, .b64_json instead of .url
-  //   // and src = "data:image/png;base64, ${response.data.data[0].b64_json}"
-  //   const imgSrc = await response.data.data[0].url
-  //   setArt(imgSrc)
-  // }
+  async function fetchImage(prompt){
+    const url = "https://loquacious-panda-8919fa.netlify.app/.netlify/functions/fetchDALLE"
+
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'text/plain',
+      },
+      body: prompt
+    })
+    //256, 512, 1024
+
+    //if b64_json, .b64_json instead of .url
+    // and src = "data:image/png;base64, ${response.data.data[0].b64_json}"
+    const result = response.json()
+    console.log("image url is: ", result)
+    const imgSrc = await result.reply.data[0].url
+    setArt(imgSrc)
+  }
 
   function handleGenerateAI(){
       setButtonClick(true);
