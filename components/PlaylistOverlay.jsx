@@ -123,7 +123,7 @@ export default function PlaylistOverlay(props) {
     const response = await fetch(url, {
       method: 'POST',
       headers: {
-        'content-type': 'text/plain',
+        'Content-Type': 'text/plain',
       },
       body: `Give a description of an image which could be used to represent a playlist of songs based on the average audio features of the songs and a sentence of what the playlist means to the user. These audio features will include danceability, energy, speechiness, and valence. If the danceability or energy is below 0.33, the colors in the picture should be described as dull and more neutral/cool. If the danceability or energy is betweenThe description should be rich in visual detail. Make sure to include that no words or letters should be present in the image.
       ###
@@ -148,8 +148,8 @@ export default function PlaylistOverlay(props) {
       average valence: ${data.valence}`
     })
 
-    const data = await response.json()
-    console.log(data)
+    const result = await response.json()
+    console.log(result)
 
     // const response = await openai.createCompletion({
     //   model: 'text-davinci-003',
