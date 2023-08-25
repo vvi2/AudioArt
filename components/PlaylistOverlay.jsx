@@ -146,7 +146,7 @@ export default function PlaylistOverlay(props) {
   }
   
   async function fetchImage(prompt){
-    // const url = "https://audio-art.netlify.app/.netlify/functions/fetchDALLE"
+    const url = "https://audio-art.netlify.app/.netlify/functions/fetchDALLE"
 
     // const response = await fetch(url, {
     //   method: 'POST',
