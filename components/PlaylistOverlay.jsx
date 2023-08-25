@@ -61,8 +61,7 @@ export default function PlaylistOverlay(props) {
           tempo: totTempo / songData.length,
           valence: totValence / songData.length,
         })
-      }
-      console.log(avgData)}
+      }}
   }, [])
 
 
@@ -141,31 +140,12 @@ export default function PlaylistOverlay(props) {
     })
 
     const result = await response.json()
-    console.log(result.reply.choices[0].text)
     setImagePrompt(result.reply.choices[0].text)
   }
   
   async function fetchImage(prompt){
     const url = "https://audio-art.netlify.app/.netlify/functions/fetchDALLE"
-
-    // const response = await fetch(url, {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'text/plain',
-    //   },
-    //   body: prompt
-    // })
-    //256, 512, 1024
-
-    //if b64_json, .b64_json instead of .url
-    // and src = "data:image/png;base64, ${response.data.data[0].b64_json}"
-    // const result = response.json()
-    // console.log(result)
-    // const imgSrc = await result.reply.data[0].url
-    // console.log("image url is: ", result.reply.data[0].url)
-    // setArt(imgSrc)
     try {
-      console.log("Fetching...");
       const response = await fetch(url, {
         method: 'POST',
         headers: {
@@ -173,8 +153,6 @@ export default function PlaylistOverlay(props) {
         },
         body: prompt,
       });
-  
-      console.log("Response status:", response.status);
   
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
@@ -184,7 +162,6 @@ export default function PlaylistOverlay(props) {
   
       if (result.reply && result.reply.data && result.reply.data[0] && result.reply.data[0].url) {
         const imgSrc = result.reply.data[0].url;
-        console.log("image url is: ", imgSrc);
         setArt(imgSrc);
       } else {
         console.error("Invalid response format");
@@ -207,7 +184,7 @@ export default function PlaylistOverlay(props) {
       setLoadingAI(true);
       setAIGenerated(true);
       fetchImage(imagePrompt).finally(() => {
-        setLoadingAI(false);
+        setLoadingAI(false); 
       })
     }
   }, [imagePrompt])
@@ -215,8 +192,6 @@ export default function PlaylistOverlay(props) {
 
   function handleChange(event){
     setPlaylistSummary(event.target.value)
-    console.log("Playlist summary is: ", playlistSummary)
-    console.log(songIDs)
   }
 
   function backButton(){

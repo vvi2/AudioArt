@@ -25,7 +25,6 @@ export default function PlaylistData(props){
 
   const handlePlaylistSelect = (playlist) => {
     // Handle the selected playlist here (e.g., store it in state, call a function, etc.)
-    console.log(playlist)
     setSelectedPlaylist(playlist);
     setShowOverlay(true);
   };
