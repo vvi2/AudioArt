@@ -108,8 +108,8 @@ export default function Home() {
 
   return(
     <div className={styles.container}>
-      <h1 className={styles.homeTitle}>Audio Art</h1>
-      <h2 className={styles.homeDescription}>Use AI to create unique cover art for your playlists.</h2>
+      <h1 className={styles.homeTitle}>AudioArt</h1>
+      <h2 className={styles.homeDescription}>Use OpenAI to create unique cover art for your playlists.</h2>
     {
       !accessToken ? 
       <div className={styles.homeLogin}>

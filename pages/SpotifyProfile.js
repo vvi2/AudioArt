@@ -7,7 +7,7 @@ export default function SpotifyProfile() {
   return (
       <div className={styles.spotifyPage}>
         <div className={styles.profileNav}>
-          <h2 className={styles.homeDescription}>Audio Art</h2>
+          <h2 className={styles.homeDescription}>AudioArt</h2>
           <Link href="/">
             <h3 className={styles.profileH3}>Logout</h3>
           </Link>
