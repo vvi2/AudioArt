@@ -244,7 +244,7 @@ export default function PlaylistOverlay(props) {
                 <li>Danceability: Tells us how suitable a song is for dancing.</li>
                 <li>Energy: Gauges how intense, fast, and loud each song is.</li>
                 <li>Speechiness: Determines whether a song is more lyrical or more instrumental.</li>
-                <li>Valence: A measure the positivity and happiness of a song.</li>
+                <li>Valence: A measure of the positivity and happiness of a song.</li>
               </ol>
 <p>Based on these features, we turn the playlist into a visual experience! </p>
 <ul>
