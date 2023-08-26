@@ -23,6 +23,8 @@ export default function PlaylistOverlay(props) {
 
   const [showBlurb, setShowBlurb] = useState(false);
 
+  const [showErrorMsg, setShowErrorMsg] = useState(false);
+
   const accessToken = localStorage.getItem('access_token')
 
   const artStyles = [
@@ -172,11 +174,17 @@ export default function PlaylistOverlay(props) {
   }
 
   function handleGenerateAI(){
-      setButtonClick(true);
-      if(avgData){
-        // generatePrompt(avgData, openai, playlistSummary)
-        generatePrompt(avgData, playlistSummary)
+      if(!playlistSummary){
+        setShowErrorMsg(true);
       }
+      else{
+        setShowErrorMsg(false);
+        setButtonClick(true);
+        if(avgData){
+          generatePrompt(avgData, playlistSummary)
+        }
+      }
+      
   }
 
   useEffect(()=>{
@@ -277,6 +285,7 @@ export default function PlaylistOverlay(props) {
               value={playlistSummary}
               onChange={handleChange}
             />
+            {showErrorMsg && <p>You must input this information before the AI can generate!</p>}
 {           (!buttonClick) ? <button 
             className={ 
             styles.generateButton} 
