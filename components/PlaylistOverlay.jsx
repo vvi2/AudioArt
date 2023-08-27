@@ -281,6 +281,7 @@ export default function PlaylistOverlay(props) {
               type="text"
               placeholder="E.g. This playlist is for late night drives."
               className={styles.formInput}
+              autocomplete= "false"
               name="playlistSummary"
               value={playlistSummary}
               onChange={handleChange}
