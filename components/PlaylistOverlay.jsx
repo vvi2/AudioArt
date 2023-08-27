@@ -285,7 +285,7 @@ export default function PlaylistOverlay(props) {
               value={playlistSummary}
               onChange={handleChange}
             />
-            {showErrorMsg && <p>You must input this information before the AI can generate!</p>}
+            {showErrorMsg && <p style={{fontSize: "16px", color: "red"}}>You must input this information before the AI can generate!</p>}
 {           (!buttonClick) ? <button 
             className={ 
             styles.generateButton} 
