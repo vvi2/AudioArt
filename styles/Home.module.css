@@ -310,6 +310,13 @@
   line-height: normal;
   margin-top: 20px;
   font-family: 'Inter', sans-serif;
+  margin-bottom: 0px;
+}
+
+.homeLogin > a{
+  font-weight: 400;
+  margin-top: 20px;
+  color: #0044cc;
 }
 .white{
   color: white;

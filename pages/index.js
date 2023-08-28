@@ -114,7 +114,8 @@ export default function Home() {
       !accessToken ? 
       <div className={styles.homeLogin}>
         <button className={styles.loginButton} onClick={authorize}>Login with Spotify</button>
-        <h2>Please login with your Spotify account to let AI run its magic!</h2>
+        <h2>Please login with your Spotify account to let OpenAI run its magic!</h2>
+        <a href="https://www.varsha.design/audioart">View demo</a>
       </div>
       : 
       <div className={styles.homeLogin}>
