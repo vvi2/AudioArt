@@ -5,6 +5,7 @@ import PlaylistOverlay from "./PlaylistOverlay";
 
 export default function PlaylistData(props){
 
+  //Retrieve data fetched from Spotify API when loading ProfileData component through props
   let playlists = props.listOfPlaylists[0]
   let profile = props.profileData
 
@@ -13,7 +14,7 @@ export default function PlaylistData(props){
   const [selectedPlaylist, setSelectedPlaylist] = useState({});
 
   const [showOverlay, setShowOverlay] = useState(false);
-
+  //Once playlists data has been fetched, filter the playlist data by playlists that user owns
   useEffect(() =>{
     if(playlists && playlists.length > 0){
       let playlistsByUser = playlists.filter((item) => {
@@ -33,7 +34,7 @@ export default function PlaylistData(props){
     setSelectedPlaylist({});
   };
 
-
+  //Style playlist elements using PlaylistCard component, passing in corresponding props
   const playlistElements = userPlaylists.map((playlist, index) => {
     return(
       <PlaylistCard
@@ -53,6 +54,7 @@ export default function PlaylistData(props){
     <div className={styles.cardContainer}>
       {playlistElements}
     </div>
+    {/* Depending on if showOverlay is true or not (if playlist element has been selected), render PlaylistOverlay component with selected playlist */}
     {showOverlay && (
         <PlaylistOverlay
           playlist={selectedPlaylist}

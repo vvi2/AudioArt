@@ -8,10 +8,12 @@ export default function SpotifyProfile() {
       <div className={styles.spotifyPage}>
         <div className={styles.profileNav}>
           <h2 className={styles.homeDescription}>AudioArt</h2>
+          {/* Links back to home page */}
           <Link href="/">
             <h3 className={styles.profileH3}>Logout</h3>
           </Link>
         </div>
+        {/* Profile Data component */}
         <ProfileData />
         <style jsx global>{`
         html,

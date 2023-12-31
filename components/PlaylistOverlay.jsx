@@ -27,15 +27,16 @@ export default function PlaylistOverlay(props) {
 
   const accessToken = localStorage.getItem('access_token')
 
-  const artStyles = [
-    {value: "Minimalism", isSelected: false},
-    {value: "Realism", isSelected: false},
-    {value: "Retro/Vintage", isSelected: false},
-    {value: "Geometric", isSelected: false},
-    {value: "Surrealism", isSelected: false},
-    {value: "Psychedelic", isSelected: false}
-  ]
+  // const artStyles = [
+  //   {value: "Minimalism", isSelected: false},
+  //   {value: "Realism", isSelected: false},
+  //   {value: "Retro/Vintage", isSelected: false},
+  //   {value: "Geometric", isSelected: false},
+  //   {value: "Surrealism", isSelected: false},
+  //   {value: "Psychedelic", isSelected: false}
+  // ]
 
+//Once songs and song data have been fetched and states have been updated, compute average data for image generation
   useEffect(()=>{
     fetchPlaylistSongs(accessToken)
     if(songList.length > 0){
@@ -66,7 +67,7 @@ export default function PlaylistOverlay(props) {
       }}
   }, [])
 
-
+  //Fetch songs on selected playlist using accessToken
   async function fetchPlaylistSongs(token) {
     const result = await fetch(`${props.playlist.tracks.href}?limit=50&offset=0`,{
         method: "GET", headers:{ 'Authorization': `Bearer ${token}`}
@@ -75,6 +76,7 @@ export default function PlaylistOverlay(props) {
     setSongList(songListJson.items)
   }
 
+  //Fetch playlist song data using accessToken
   async function fetchSongData(token){
     const result = await fetch(`https://api.spotify.com/v1/audio-features?ids=${songIDs}`,{
       method: "GET", headers:{'Authorization': `Bearer ${token}`}
@@ -82,7 +84,7 @@ export default function PlaylistOverlay(props) {
     const songDataJson = await result.json();
     setSongData(songDataJson.audio_features)
   }
-
+  //Format songIDs from songList
   const songIDs = (() => {
     const id = songList.map((song) => {
       return song.track.id;
@@ -90,8 +92,10 @@ export default function PlaylistOverlay(props) {
     return id.join(",");
   })();
 
+
   const songElements = songList.map((song, index) =>{
     const artists = song.track.artists.map((artist, artIndex) =>{
+      // Add comma after each artist unless it's the last artist in the list
       if(artIndex === song.track.artists.length - 1){
         return <span key={artIndex}>{artist.name}</span>
       }
@@ -110,6 +114,7 @@ export default function PlaylistOverlay(props) {
 
   const [art, setArt] = useState("");
 
+  //Send POST request to OpenAI API through Netlify serverless function (hides secret API key)
   async function generatePrompt(data, playlistSummary){
     const url = "https://audio-art.netlify.app/.netlify/functions/fetchAI"
 
@@ -118,6 +123,7 @@ export default function PlaylistOverlay(props) {
       headers: {
         'Content-Type': 'text/plain',
       },
+      // Pass in examples and corresponding variables
       body: `Give a description of an image which could be used to represent a playlist of songs based on the average audio features of the songs and a sentence of what the playlist means to the user. These audio features will include danceability, energy, speechiness, and valence. If the danceability or energy is below 0.33, the colors in the picture should be described as dull and more neutral/cool. If the danceability or energy is betweenThe description should be rich in visual detail. Make sure to include that no words or letters should be present in the image.
       ###
       sentence: This playlist is for when I want to get hype and excited during a pregame before a night out.
@@ -144,7 +150,7 @@ export default function PlaylistOverlay(props) {
     const result = await response.json()
     setImagePrompt(result.reply.choices[0].text)
   }
-  
+  //Send POST request to OpenAI DALL E API through Netlify serveless function
   async function fetchImage(prompt){
     const url = "https://audio-art.netlify.app/.netlify/functions/fetchDALLE"
     try {
@@ -161,7 +167,7 @@ export default function PlaylistOverlay(props) {
       }
   
       const result = await response.json();
-  
+      //Once result is loaded, set art state to img
       if (result.reply && result.reply.data && result.reply.data[0] && result.reply.data[0].url) {
         const imgSrc = result.reply.data[0].url;
         setArt(imgSrc);
@@ -172,21 +178,23 @@ export default function PlaylistOverlay(props) {
       console.error("Fetch error:", error);
     }
   }
-
+  
   function handleGenerateAI(){
+      //Make sure user inputs something in text box
       if(!playlistSummary){
         setShowErrorMsg(true);
       }
       else{
         setShowErrorMsg(false);
         setButtonClick(true);
+        //Once avgData state loaded into, call generatePrompt
         if(avgData){
           generatePrompt(avgData, playlistSummary)
         }
       }
       
   }
-
+  //Once imagePrompt has been updated, display loadingAI message and change overlay display and once imaged has been fetched, remove loading message
   useEffect(()=>{
     if(imagePrompt){
       setLoadingAI(true);
@@ -197,7 +205,7 @@ export default function PlaylistOverlay(props) {
     }
   }, [imagePrompt])
   
-
+  //Update state based on user input
   function handleChange(event){
     setPlaylistSummary(event.target.value)
   }
@@ -235,9 +243,11 @@ export default function PlaylistOverlay(props) {
         <span onClick={props.onClose} className={styles.closeButton}>
           &times;
         </span>
+        {/* Depending on if aiGenerated has been set to true by the click of the Generate AI button, display different components */}
         {aiGenerated ? 
           <div>   
             <span onClick={backButton} className={styles.backButton}> &larr; </span>  
+            {/* Depending on if loadingAI has been set to false meaning that the API requests have completed, display different components */}
             {loadingAI ? 
               <p>AI is finalizing your cover art...</p> 
               :
@@ -281,7 +291,7 @@ export default function PlaylistOverlay(props) {
               type="text"
               placeholder="E.g. This playlist is for late night drives."
               className={styles.formInput}
-              autocomplete= "false"
+              autoComplete= "false"
               name="playlistSummary"
               value={playlistSummary}
               onChange={handleChange}
