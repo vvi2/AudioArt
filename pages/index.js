@@ -10,8 +10,7 @@ export default function Home() {
   //Implicit Grant Authorization Flow
   //Registered App in Spotify API with these settings
   const CLIENT_ID = "3f3dceffc53241fea28db2404f844ffd"
-  // const REDIRECT_URI = "https://audio-art.netlify.app/"
-  const REDIRECT_URI = "http://localhost:3000"
+  const REDIRECT_URI = "https://audio-art.netlify.app/"
 
   //Declares state variable with initial value of empty and an update function
   const [accessToken, setAccessToken] = useState("");
